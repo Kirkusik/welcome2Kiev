@@ -1,56 +1,65 @@
 import "./import/modules";
-var $ = require('jQuery');
 
 // main form - 1
-$(".input-email").focus(function() {
+$(".input-email").focus(function () {
     $(".input-leg").removeClass('display-show');
 });
 
-$(".input-email").blur(function() {
+$(".input-email").blur(function () {
     $(".input-leg").addClass('display-show');
 });
 
-$('.sub-btn').click(function(event){
+$('.sub-btn').click(function (event) {
     let email = $('.input-email').val();
-    
+
     if (email.length > 0 && (email.match(/.+?\@.+/g) || []).length !== 1 || $('.input-email').val() == '') {
         event.preventDefault();
 
         $(".input-email").addClass('input-error');
 
-        setTimeout(function(){
+        setTimeout(function () {
             return $(".input-email").removeClass('input-error');
         }, 1500)
-    }else{
-        alert('Здесь текст 01');
+    } else {
+        $.fancybox.open($('#special'));
     }
 
-    
+
 });
 
 
 // main form - 2
-$(".input-email1").focus(function() {
+$(".input-email1").focus(function () {
     $(".input-leg1").removeClass('display-show');
 });
 
-$(".input-email1").blur(function() {
+$(".input-email1").blur(function () {
     $(".input-leg1").addClass('display-show');
 });
 
+// Отправка формы спецпредложения
+$('.emailForm').on('submit', function (event) {
+    event.preventDefault();
+    if (formValidation()) {
+        //вывод отправляемых данных в консоль
+        console.log($(this).serialize());
+    }
+    //появление всплывающего окна
+    $.fancybox.open($('#special'));
+});
 
-$('.sub-btn1').click(function(event){
+$('.sub-btn1').click(function (event) {
     let email = $('.input-email1').val();
-    
+
     if (email.length > 0 && (email.match(/.+?\@.+/g) || []).length !== 1 || $('.input-email1').val() == '') {
         event.preventDefault();
 
         $(".input-email1").addClass('input-error');
 
-            setTimeout(function(){
+        setTimeout(function () {
             $(".input-email1").removeClass('input-error');
         }, 1500)
-    }else{
+    } else {
         alert('Здесь текст 02');
     }
 
@@ -58,14 +67,35 @@ $('.sub-btn1').click(function(event){
 
 
 // btn
-$(".wrap-content-btn a").click(function(e) {
+$(".wrap-content-btn a").click(function (e) {
     e.preventDefault();
 
 
     $("html, body").animate({
-       scrollTop: $($(this).attr("href")).offset().top + "px"
+        scrollTop: $($(this).attr("href")).offset().top + "px"
     }, {
-       duration: 500,
-       easing: "swing"
+        duration: 500,
+        easing: "swing"
     });
+});
+
+$('#slider-wrap').owlCarousel({
+    loop: true,
+    margin: 10,
+    nav: true,
+    responsiveClass: true,
+    responsive: {
+        0: {
+            items: 1,
+            nav: false,
+        },
+        600: {
+            items: 3,
+            nav: true,
+        },
+        1000: {
+            items: 5,
+
+        }
+    }
 })

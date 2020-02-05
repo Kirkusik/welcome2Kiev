@@ -1,5 +1,3 @@
-var $ = require('jQuery');
-
 // focus/blur form
 $(".text-form2").focus(function () {
     $(".input-leg2").removeClass('display-show');
@@ -85,12 +83,18 @@ function formValidation() {
             return $(".text-form2").removeClass('input-error');
         }, 1500)
     }
+    return true;
 };
 
+// отправка формы в футере 
 $('#orderForm').on('submit', function (event) {
     event.preventDefault();
-    formValidation();
-    console.log($('#orderForm').serialize());
+    if (formValidation()) {
+        //вывод отправляемых данных в консоль
+        console.log($(this).serialize());
+        //появление всплывающего окна
+        $.fancybox.open($('#footerForm'));
+    }
 
 });
 

@@ -62,9 +62,5 @@
         "webpack": "^4.30.0",
         "webpack-stream": "^5.2.1",
         "yargs": "^13.2.4"
-    },
-    "dependencies": {
-        "jquery": "^3.4.1",
-        "smart-grid": "^2.1.2"
     }
 }
