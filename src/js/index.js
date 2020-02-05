@@ -79,23 +79,38 @@ $(".wrap-content-btn a").click(function (e) {
     });
 });
 
+
+
+// Слайдер
 $('#slider-wrap').owlCarousel({
     loop: true,
-    margin: 10,
-    nav: true,
+    margin: 20,
+    dots: false,
     responsiveClass: true,
     responsive: {
         0: {
             items: 1,
-            nav: false,
+        },
+        480: {
+            items: 2,
         },
         600: {
             items: 3,
-            nav: true,
         },
-        1000: {
+        800: {
+            items: 4,
+        },
+        1100: {
             items: 5,
-
         }
     }
 })
+
+// Стилизированые переключатели для слайдера
+$(".next_button").click(function(){
+    $('#slider-wrap').trigger("next.owl.carousel");
+});
+   
+$(".prev_button").click(function(){
+    $('#slider-wrap').trigger("prev.owl.carousel");
+});

@@ -62,7 +62,7 @@
                     <div class="wrap-form">
                         <form method="POST" class="emailForm">
                             <legend class="input-leg display-show">E-mail</legend>
-                            <input name="e-mail" placeholder="E-mail" class="input-email">
+                            <input name="e-mail" value="" placeholder="E-mail" class="input-email">
                             <input type="submit" value="" class="sub-btn">
                         </form>
                         <p>Нажимая на кнопку, вы даёте согласие на обработку своих персональных данных.</p>
@@ -110,7 +110,7 @@
                     <div class="wrap-form">
                         <form method="POST" class="emailForm">
                             <legend class="input-leg1 display-show">E-mail</legend>
-                            <input name="e-mail" placeholder="E-mail" class="input-email1">
+                            <input name="e-mail" value="" placeholder="E-mail" class="input-email1">
                             <input type="submit" value="" class="sub-btn1">
                         </form>
                         <p>Нажимая на кнопку, вы даёте согласие на обработку своих персональных данных.</p>
@@ -176,13 +176,33 @@
             <section class="slide">
                 <h5>Наши партнеры</h5>
 
-                <div id="slider-wrap" class="owl-carousel owl-theme">
-                    <img src="../img/shop1.png" alt="Foxtrot">
-                    <img src="../img/shop2.png" alt="ATB">
-                    <img src="../img/shop3.png" alt="Eldorado">
-                    <img src="../img/shop4.png" alt="Hotline">
-                    <img src="../img/shop5.png" alt="Citrus">
-                </div>
+                <section class="slider">
+                    <div class="next_button">
+                      <img src="./img/prev.png" alt="Foxtrot">
+                    </div>
+                
+                    <ul class="owl-carousel owl-theme"  id="slider-wrap">
+                      <li class="img-p">
+                        <img src="./img/shop1.png" alt="Foxtrot">
+                      </li>
+                      <li  class="img-p">
+                        <img src="./img/shop2.png" alt="ATB">
+                      </li>
+                      <li  class="img-p">
+                        <img src="./img/shop3.png" alt="Eldorado">
+                      </li>
+                      <li class="img-w">
+                        <img src="./img/shop4.png" alt="Hotline">
+                      </li>
+                      <li  class="img-w">
+                        <img src="./img/shop5.png" alt="Citrus">
+                      </li>
+                    </ul>
+                
+                    <div class="prev_button">
+                      <img src="./img/next.png" alt="">
+                    </div>
+                  </section>
             </section>
 
 
@@ -195,12 +215,6 @@
     @@include("../blocks/modules/footer/footer.html")
 
 
-    <div class="poopUp" id="special">
-        Текст 1
-    </div>
-    <div class="poopUp" id="footerForm">
-        Текст 2
-    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>

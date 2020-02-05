@@ -35,6 +35,7 @@ $('.footer-form .checked').on('click', function () {
     ($('.wrap-input-list')).toggleClass(`display-show`);
 });
 
+
 // checkbox
 let countChecked = function () {
     let id = $(this).attr('id');
@@ -58,6 +59,14 @@ let countChecked = function () {
 
 
 $('input[type=checkbox]').on('click', countChecked);
+
+// Промокод
+$('.prom-code').on('click', function () {
+    $('.prom-code').val('');
+    $('.prom-code').addClass('prom-code-active');
+    $('.prom-code').removeClass('prom-code');
+})
+
 
 
 // Валидация форми footer

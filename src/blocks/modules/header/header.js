@@ -41,24 +41,23 @@ $('.but-plush').click(function () {
 
 
 // scroll
-$("#btn-bottom").click(function (e) {
-    e.preventDefault();
-
+function scroll(elem){
+    console.log(1);
+    
     $("html, body").animate({
-        scrollTop: $($(this).attr("href")).offset().top + "px"
+        scrollTop: $($(elem).attr("href")).offset().top + "px"
     }, {
         duration: 500,
         easing: "swing"
     });
+}
+
+$("#btn-bottom").click(function (e) {
+    e.preventDefault();
+    scroll(this);
 })
 
 $(".wrap-ul a").click(function (e) {
     e.preventDefault();
-
-    $("html, body").animate({
-        scrollTop: $($(this).attr("href")).offset().top + "px"
-    }, {
-        duration: 500,
-        easing: "swing"
-    });
+    scroll(this);
 })
