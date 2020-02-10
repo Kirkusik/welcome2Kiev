@@ -1,172 +1,58 @@
-<footer>
-    <section id="contacts" class="footer-wrap-form">
+<footer class="page-footer footer">
+    <div class="container">
+        <a class="footer__logo">
+            <img src="../../../img/footer-logo.png" alt="" class="footer__logo-img" height="40" width="186">
+            <span>Kyiv</span>
+        </a>
 
-        <h4 class="main-title">Контакты</h4>
+        <nav class="footer__nav">
 
-        <section class="wrap-footer">
-
-            <div class="wrap-contact">
-                <a href="tel:+380961209696">+38 (096) 120 96 96</a>
-                <a href="" class="footer-link">info@welcome2kyiv.com.ua</a>
-            </div>
-
-            <div class="wrap-socials">
-                <a href="">
-                    <img src="img/fb.png" alt="">
-                </a>
-                <a href="">
-                    <img src="img/inst.png" alt="">
-                </a>
-            </div>
-
-            <h5 id="form-back" class="title-form">Свяжитесь с нами</h5>
-
-            <form method="post" class="footer-form" id="orderForm">
-                <legend class="input-leg2 display-show">Имя*</legend>
-                <input type="text" name="name" value="" placeholder="Имя*" class="text-form2">
-
-                <legend class="input-leg3 display-show">E-mail*</legend>
-                <input type="text" name="e-Mail" value="" placeholder="E-Mail*" class="text-form3">
-
-                <label for="">Выберите услугу:</label>
-                <input type="text" class="checked" size="25" readonly value="Отели">
-                <button id="btn-list"></button>
-
-                <div class="wrap-input-list display-show">
-
-                    <label for="hotels">
-                        <div class="label-box">
-                            <div class="check-box"></div>
-                        </div>
-                        <span>Отели</span>
-                    </label>
-                    <input type="checkbox" name="hotels" id="hotels" checked>
-
-                    <label for="transfer">
-                        <div class="label-box">
-                            <div class="check-box display-show"></div>
-                        </div>
-                        <span>Трансфер</span>
-                    </label>
-                    <input type="checkbox" name="transfer" id="transfer">
-
-                    <label for="restaurants">
-                        <div class="label-box">
-                            <div class="check-box display-show"></div>
-                        </div>
-                        <span>Рестораны</span>
-                    </label>
-                    <input type="checkbox" name="restaurants" id="restaurants">
-
-                    <label for="excursions">
-                        <div class="label-box">
-                            <div class="check-box display-show"></div>
-                        </div>
-                        <span>Экскурсии</span>
-                    </label>
-                    <input type="checkbox" name="excursions" id="excursions">
-
-                    <label for="entertainment">
-                        <div class="label-box">
-                            <div class="check-box display-show"></div>
-                        </div>
-                        <span>Развлечения</span>
-                    </label>
-                    <input type="checkbox" name="entertainment" id="entertainment">
-
-                    <label for="shopping">
-                        <div class="label-box">
-                            <div class="check-box display-show"></div>
-                        </div>
-                        <span>Шопинг</span>
-                    </label>
-                    <input type="checkbox" name="shopping" id="shopping">
-
-                </div>
-
-
-                <textarea name="massage" type="text" placeholder="Сообщение" class="footer-massage"></textarea>
-
-                <label for="" class="promotional-code">Промокод</label>
-                <input class="prom-code" id="check" type="text" value="+" name="promotional-code">
-
-                <input type="submit" class="footer-sub-btn" value="Отправить">
-
-                <p>Нажимая на кнопку, вы даёте согласие на обработку своих персональных данных.</p>
-
-            </form>
-
-        </section>
-
-
-    </section #contacts>
-
-    <section class="wrap-SEO">
-        <h5>Заголовок SEO текста</h5>
-        <p class="wrap-SEO-p">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempore vel fugit perferendis
-            et, nostrum nihil soluta repudiandae ut, asperiores ipsum minima obcaecati saepe! Quisquam maiores numquam
-            atque officia enim aperiam. .Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore nesciunt ex,
-            magni unde quo rem? Optio quidem architecto, nulla natus magnam possimus totam illo, quod neque, sed saepe
-            minus in. Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque error nemo, illo ex quo, quia
-            sapiente voluptate aperiam sunt quod expedita. Asperiores, optio. Praesentium fuga facilis sed ut dolore
-            vitae.</p>
-        <span class="text-opacity"></span>
-        <a href="" class="read-more">Читать полностью</a>
-    </section>
-
-    <section class="wrap-footer-bottom">
-        <div class="footer-bottom">
-            <a href="" class="footer-logo">
-                <span>Kyiv</span>
-            </a>
-
-            <ul>
-                <li>
-                    <a href="">Отели</a>
+            <ul class="footer__menu">
+                <li class="footer__menu-item">
+                    <a href="#h4-hotels" class="footer__menu-link">Отели</a>
                 </li>
-                <li>
-                    <a href="">Трансфер</a>
+                <li class="footer__menu-item">
+                    <a href="#h4-transfer" class="footer__menu-link">Трансфер</a>
                 </li>
-                <li>
-                    <a href="">Рестораны</a>
+                <li class="footer__menu-item">
+                    <a href="#h4-restaurants" class="footer__menu-link">Рестораны</a>
                 </li>
-                <li>
-                    <a href="">Экскурсии</a>
+                <li class="footer__menu-item">
+                    <a href="#h4-excursions" class="footer__menu-link">Экскурсии</a>
                 </li>
-                <li>
-                    <a href="">Развлечения</a>
+                <li class="footer__menu-item">
+                    <a href="#h4-entertainment" class="footer__menu-link">Развлечения</a>
                 </li>
-                <li>
-                    <a href="">Шопинг</a>
+                <li class="footer__menu-item">
+                    <a href="#h4-shopping" class="footer__menu-link">Шопинг</a>
                 </li>
             </ul>
 
-            <ul>
-                <li>
-                    <a href="">О компании</a>
+            <ul class="footer__menu">
+                <li class="footer__menu-item">
+                    <a href="#about-company" class="footer__menu-link">О компании</a>
                 </li>
-                <li>
-                    <a href="">Контакты</a>
+                <li class="footer__menu-item">
+                    <a href="#contacts" class="footer__menu-link">Контакты</a>
                 </li>
             </ul>
+        </nav>
 
-            <div class="wrap-social">
-                <a href="tel:+380961209696">+38 (096) 120 96 96</a>
-                <a href="" class="footer-link">info@welcome2kyiv.com.ua</a>
-                <span class="wrap-icon">
-                    <a href="">
-                        <img src="img/fb-g.png" alt="">
-                    </a>
-                    <a href="">
-                        <img src="img/inst-g.png" alt="">
-                    </a>
-                </span>
-            </div>
-
-            <div class="info1">2019. Welcome2 Kyiv. Все права защищены.</div>
-
-            <div class="info2">Политика конфиденциальности</div>
+        <div class="footer__contacts">
+            <a href="tel:+380961209696" class="footer__tel">+38 (096) 120 96 96</a>
+            <a href="" class="footer__mail">info@welcome2kyiv.com.ua</a>
+            <ul class="footer__socials">
+                <li class="footer__socials-item">
+                    <a href="" class="footer__socials-link fb"></a>
+                </li>
+                <li class="footer__socials-item">
+                    <a href="" class="footer__socials-link inst"></a>
+                </li>
+            </ul>
         </div>
-    </section>
 
+        <div class="footer__copyright">2019. Welcome2 Kyiv. <br> Все права защищены.</div>
+
+        <a href="#header" class="footer__policy">Политика конфиденциальности</a>
+    </div>
 </footer>

@@ -1,0 +1,135 @@
+$container_width: 1200px;
+$columns: 12;
+
+$break_xs: 320px;
+$break_sm: 576px;
+$break_md: 768px;
+$break_lg: 992px;
+$break_xl: 1200px;
+
+$offset: 30px;
+$offset_xs: $offset;
+$offset_sm: $offset;
+$offset_md: $offset;
+$offset_lg: $offset;
+$offset_xl: $offset;
+
+$offset_one_side: ($offset / 2);
+$offset_xs_one_side: ($offset_xs / 2);
+$offset_sm_one_side: ($offset_sm / 2);
+$offset_md_one_side: ($offset_md / 2);
+$offset_lg_one_side: ($offset_lg / 2);
+$offset_xl_one_side: ($offset_xl / 2);
+
+$fields: 15px;
+
+@mixin container-fluid() {
+	width: 100%;
+	padding-left: $fields;
+	padding-right: $fields;
+}
+
+@mixin container() {
+	margin: 0 auto;
+	@include container-fluid();
+}
+
+@mixin container-xs($prop, $value) {
+	@media screen and (min-width: $break_xs) {
+		#{$prop}: $value;
+	}
+}
+
+@mixin container-sm($prop, $value) {
+	@media screen and (min-width: $break_sm) {
+		#{$prop}: $value;
+	}
+}
+
+@mixin container-md($prop, $value) {
+	@media screen and (min-width: $break_md) {
+		#{$prop}: $value;
+	}
+}
+
+@mixin container-lg($prop, $value) {
+	@media screen and (min-width: $break_lg) {
+		#{$prop}: $value;
+	}
+}
+
+@mixin container-xl($prop, $value) {
+	@media screen and (min-width: $break_xl) {
+		#{$prop}: $value;
+	}
+}
+
+@mixin row-flex() {
+	display: flex;
+	flex-wrap: wrap;
+	@include row-offsets();
+}
+
+@mixin row-offsets() {
+	margin-left: ($offset_one_side * -1);
+	margin-right: ($offset_one_side * -1);
+}
+
+@mixin col() {
+	box-sizing: border-box;
+	word-wrap: break-word;
+	@include col-offsets(margin);
+}
+
+@mixin col-offsets($type) {
+	#{$type}-left: $offset_one_side;
+	#{$type}-right: $offset_one_side;
+}
+
+@mixin col-size($n) {
+	$val: 100% / $columns * $n;
+	width: #{calc(#{$val} - #{$offset})
+}
+
+;
+}
+
+@mixin col-size-xs($n) {
+	$val: 100% / $columns * $n;
+	@include container-xs(width, #{calc(#{$val} - #{$offset_xs})
+}
+
+);
+}
+
+@mixin col-size-sm($n) {
+	$val: 100% / $columns * $n;
+	@include container-sm(width, #{calc(#{$val} - #{$offset_sm})
+}
+
+);
+}
+
+@mixin col-size-md($n) {
+	$val: 100% / $columns * $n;
+	@include container-md(width, #{calc(#{$val} - #{$offset_md})
+}
+
+);
+}
+
+@mixin col-size-lg($n) {
+	$val: 100% / $columns * $n;
+	@include container-lg(width, #{calc(#{$val} - #{$offset_lg})
+}
+
+);
+}
+
+@mixin col-size-xl($n) {
+	$val: 100% / $columns * $n;
+	@include container-xl(width, #{calc(#{$val} - #{$offset_xl})
+}
+
+);
+}

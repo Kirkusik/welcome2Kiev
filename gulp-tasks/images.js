@@ -1,6 +1,8 @@
 "use strict";
 
-import { paths } from "../gulpfile.babel";
+import {
+    paths
+} from "../gulpfile.babel";
 import gulp from "gulp";
 import gulpif from "gulp-if";
 import imagemin from "gulp-imagemin";
@@ -32,18 +34,33 @@ gulp.task("images", () => {
             }),
             imageminMozjpeg({
                 progressive: true,
-                quality: 90
+                quality: 75
             }),
             imagemin.svgo({
-                plugins: [
-                    { removeViewBox: false },
-                    { removeUnusedNS: false },
-                    { removeUselessStrokeAndFill: false },
-                    { cleanupIDs: false },
-                    { removeComments: true },
-                    { removeEmptyAttrs: true },
-                    { removeEmptyText: true },
-                    { collapseGroups: true }
+                plugins: [{
+                        removeViewBox: false
+                    },
+                    {
+                        removeUnusedNS: false
+                    },
+                    {
+                        removeUselessStrokeAndFill: false
+                    },
+                    {
+                        cleanupIDs: false
+                    },
+                    {
+                        removeComments: true
+                    },
+                    {
+                        removeEmptyAttrs: true
+                    },
+                    {
+                        removeEmptyText: true
+                    },
+                    {
+                        collapseGroups: true
+                    }
                 ]
             })
         ])))

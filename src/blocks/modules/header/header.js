@@ -1,63 +1,56 @@
 `use strict`;
 
-// Выпадающий список первого елемента списка header
-$(document).click(function (e) {
-    let container = $("#head-list-one");
-    if (container.has(e.target).length === 0) {
-        $('#head-list-one').removeClass(`list-active`);
-        $('.list-li').addClass(`display-show`);
-        ($('#head-list-one .img-but')).removeClass(`active-but`);
+$('#service-menu-list').click(function () {
+    $('#service-menu-list').toggleClass(`list-active`);
+    $('.list-li').toggleClass(`hidden`);
+    ($('#service-menu-list .img-but')).toggleClass(`active-but`);
+});
+
+$(document).on('click', '.sublist-toggle a', function (e) {
+
+    $(this).next('ul').toggleClass(`hidden`);
+    $(this).parent('li').toggleClass('active');
+});
+
+$(document).on('click', '.sublist a', function (e) {
+    if ($(this).parent().attr('id') === 'service-menu-list') {
+        e.preventDefault();
+        scroll(this);
     }
+    $(this).parents('.sublist').toggleClass(`hidden`);
 });
 
-$('#head-list-one').click(function () {
-    $('#head-list-one').toggleClass(`list-active`);
-    $('.list-li').toggleClass(`display-show`);
-    ($('#head-list-one .img-but')).toggleClass(`active-but`);
-});
-
-
-// Выпадающий список второго елемента списка header
-$(document).click(function (e) {
-    let container = $("#head-list-two");
-    if (container.has(e.target).length === 0) {
-        $('#head-list-two').removeClass(`list-active`);
-        $('.list-li-lang').addClass(`display-show`);
-        ($('#head-list-two .img-but')).removeClass(`active-but`);
-    }
-});
-
-$('#head-list-two').click(function () {
-    $('#head-list-two').toggleClass(`list-active`);
-    $('.list-li-lang').toggleClass(`display-show`);
-    ($('#head-list-two .img-but')).toggleClass(`active-but`);
+$('#lang-list').click(function () {
+    $('#lang-list').toggleClass(`list-active`);
+    $('.list-li-lang').toggleClass(`hidden`);
+    ($('#lang-list .img-but')).toggleClass(`active-but`);
 });
 
 // Модальное окно
-$('.but-plush').click(function () {
-    $('.header').toggleClass(`top-nav-active`);
+$(document).on('click', '.mobile-menu-toggle', function () {
+    $('.top-nav').toggleClass(`active`);
+});
+$(document).on('click', '.top-nav.active a', function () {
+    $('.top-nav').toggleClass(`active`);
 });
 
-
-
 // scroll
-function scroll(elem){
-    console.log(1);
-    
+function scroll(elem) {
+    let target = $(elem).attr("href");
+
+    console.log($(target).offset().top - 100);
+    console.log($(target).offset().top);
+
     $("html, body").animate({
-        scrollTop: $($(elem).attr("href")).offset().top + "px"
+        scrollTop: ($(target).offset().top - 150) + "px"
     }, {
-        duration: 500,
+        duration: 1000,
         easing: "swing"
     });
+
 }
 
 $("#btn-bottom").click(function (e) {
     e.preventDefault();
     scroll(this);
-})
-
-$(".wrap-ul a").click(function (e) {
-    e.preventDefault();
-    scroll(this);
-})
+});
