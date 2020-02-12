@@ -7,10 +7,12 @@
     <title>Welcome2 lend final</title>
     <meta name="theme-color" content="#fff">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/main.css">
 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link
         href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap&subset=cyrillic"
         rel="stylesheet">
@@ -67,7 +69,7 @@
                     <form method="POST" class="emailForm">
                         <span class="input-title hidden">E-mail</span>
                         <input name="e-mail" value="" placeholder="E-mail" class="input-email">
-                        <input type="hidden" name="admin-email" value="inweb@ua.fm">
+                        <input type="hidden" name="admin-email" value="no-reply@welcome2kyiv.com.ua">
                         <input type="submit" value="" class="cta__submit">
                     </form>
                     <p>Нажимая на кнопку, вы даёте согласие на обработку своих персональных данных.</p>
@@ -120,7 +122,7 @@
                     <form method="POST" class="emailForm">
                         <span class="input-title hidden">E-mail</span>
                         <input name="e-mail" value="" placeholder="E-mail" class="input-email">
-                        <input type="hidden" name="admin-email" value="inweb@ua.fm">
+                        <input type="hidden" name="admin-email" value="no-reply@welcome2kyiv.com.ua">
                         <input type="submit" value="" class="cta__submit">
                     </form>
                     <p>Нажимая на кнопку, вы даёте согласие на обработку своих персональных данных.</p>
@@ -145,6 +147,7 @@
                         <a class="order-btn__link" href="#form-back">Забронировать</a>
                     </div>
                 </div>
+            </div>
         </section>
 
         <section class="service-section" data-aos="fade-up">
@@ -162,6 +165,7 @@
                         <a class="order-btn__link" href="#form-back">Забронировать</a>
                     </div>
                 </div>
+            </div>
         </section>
 
         <section class="service-section about-us" id="about-company">
@@ -252,18 +256,20 @@
                         </h3>
 
                         <label class="contacts__form-label">
-                            <span class="input-leg2 hidden">Имя*</span>
-                            <input type="text" name="name" value="" placeholder="Имя*" class="text-form2">
+                            <span class="input-title hidden">Имя*</span>
+                            <input type="text" name="user_name" value="" placeholder="Имя*"
+                                class="contacts__form-input">
                         </label>
 
                         <label class="contacts__form-label">
-                            <span class="input-leg3 hidden">E-mail*</span>
-                            <input type="text" name="e-Mail" value="" placeholder="E-Mail*" class="text-form3">
+                            <span class="input-title hidden">E-mail*</span>
+                            <input type="email" name="e-mail" value="" placeholder="E-Mail*"
+                                class="contacts__form-input">
                         </label>
 
                         <div class="services-checker-wrap">
                             <label class="contacts__form-label">Выберите услугу:</label>
-                            <input type="text" class="checked" size="25" readonly value="Отели">
+                            <input type="text" class="contacts__form-input checked" size="25" readonly value="Отели">
                             <button id="btn-list" class="services-checker__toggle"></button>
 
                             <div class="services__check-list hidden">
@@ -319,12 +325,15 @@
                             </div>
                         </div>
 
-                        <textarea name="massage" placeholder="Сообщение" class="footer-massage"></textarea>
+                        <textarea name="message" placeholder="Сообщение" class="footer-massage"></textarea>
 
                         <label class="promotional-code contacts__form-label">
                             Промокод<span class="plus">+</span>
                             <input class="prom-code-input" id="check" type="text" value="" name="promotional-code">
                         </label>
+
+                        <input type="hidden" name="admin-email" value="info@welcome2kyiv.com.ua">
+
                         <input type="submit" class="footer-sub-btn" value="Отправить">
 
                         <p class="contacts__form-agreement">Нажимая на кнопку, вы даёте согласие на обработку своих
@@ -391,14 +400,22 @@
             </div>
         </section>
 
-        </div>
     </main>
 
 
 
     @@include("../blocks/modules/footer/footer.html")
 
-
+    <div class="popup-promo hidden" data-fancybox>
+        <h2>
+            Текст для формы с промо-кодом
+        </h2>
+    </div>
+    <div class="popup-cform hidden" data-fancybox>
+        <h2>
+            Текст для формы с промо-кодом
+        </h2>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>

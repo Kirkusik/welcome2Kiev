@@ -26,21 +26,14 @@ $(".order-btn__link").click(function (e) {
 });
 
 // focus/blur form
-$(".text-form2").focus(function () {
-    $(".input-leg2").removeClass('hidden');
+$(".contacts__form-input").focus(function () {
+    $(this).prev(".input-title").removeClass('hidden');
 });
 
-$(".text-form2").blur(function () {
-    $(".input-leg2").addClass('hidden');
+$(".contacts__form-input").blur(function () {
+    $(this).prev(".input-title").addClass('hidden');
 });
 
-$(".text-form3").focus(function () {
-    $(".input-leg3").removeClass('hidden');
-});
-
-$(".text-form3").blur(function () {
-    $(".input-leg3").addClass('hidden');
-});
 
 
 // list
@@ -99,70 +92,69 @@ $('.plus').on('click', function () {
 // Валидация форми footer
 function formValidation(form) {
 
-    let email = $(form).find('.text-form3').val();
+    let inputs = $(form).find('input:not([type="submit"])');
 
-    if (email.length > 0 && (email.match(/.+?\@.+/g) || []).length !== 1 || $('.text-form3').val() == '') {
-        e.preventDefault();
+    inputs.each((index, element) => {
 
-        $(".text-form3").addClass('input-error');
+        let value = $(element).val();
 
-        setTimeout(function () {
-            return $(".text-form3").removeClass('input-error');
-        }, 1500)
-    }
+        if ($(element).attr('name') === 'user_name') {
+            if (value === '') {
+                $(element).addClass('input-error');
 
-    if ($('.text-form2').val() == '') {
-        e.preventDefault();
-        $(".text-form2").addClass('input-error');
+                setTimeout(function () {
+                    $(element).removeClass('input-error');
+                    return false;
+                }, 2500);
+            }
+        }
+        if ($(element).attr('name') === 'e-mail') {
 
-        setTimeout(function () {
-            return $(".text-form2").removeClass('input-error');
-        }, 1500)
-    }
+            if (value.length > 0 && (value.match(/.+?\@.+/g) || []).length !== 1 || value === '') {
+
+                $(element).addClass('input-error');
+
+                setTimeout(function () {
+                    $(element).removeClass('input-error');
+                    return false;
+                }, 2500);
+
+            }
+
+        }
+
+    });
+
     return true;
+
 };
+formSend('#orderForm');
+formSend('.emailForm');
 
-// отправка формы в футере 
-$('#orderForm').on('submit', function (event) {
-    event.preventDefault();
-    if (formValidation()) {
-        //вывод отправляемых данных в консоль
-        console.log($(this).serialize());
-        //появление всплывающего окна
-        $.fancybox.open($('#footerForm'));
-    }
+function formSend(selector) {
 
-});
-//форма подписки
-$('.emailForm').on('submit', function (event) {
-    event.preventDefault();
-    if (formValidation()) {
-        console.log($(this).serialize());
+    $(selector).on('submit', function (event) {
+        event.preventDefault();
 
-        $.ajax({
-            url: "/send-mail.php", //url страницы (action_ajax_form.php)
-            type: "POST", //метод отправки
-            data: $(this).serialize(), // Сеарилизуем объект
-            contentType: false,
-            processData: false,
-            cache: false,
-            success: function (response) { //Данные отправлены успешно
-                $(this)[0].reset();
-                console.log(response);
 
-            },
-            error: function (response) { // Данные не отправлены
-                if (errorHandler) {
-                    errorHandler()
-                } else {
+        if (formValidation($(selector))) {
+            $.ajax({
+                url: "/mail.php", //url страницы (action_ajax_form.php)
+                type: "POST", //метод отправки
+                data: $(this).serialize(), // Сеарилизуем объект
+                success: function (response) { //Данные отправлены успешно
+                    $(this).trigger('reset');
+                    $.fancybox.open($('.popup-cform'));
+                },
+                error: function (response) { // Данные не отправлены              
                     throw new Error(response)
                 }
-            }
-        });
-    }
+            });
+        }
 
-    $.fancybox.open($('#special'));
-});
+    });
+}
+
 // read more animate
 $('.read-more').on('click', function (e) {
     e.preventDefault();
