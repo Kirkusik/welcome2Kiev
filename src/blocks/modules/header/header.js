@@ -11,6 +11,10 @@ $(document).on('click', '.sublist-toggle a', function (e) {
     $(this).next('ul').toggleClass(`hidden`);
     $(this).parent('li').toggleClass('active');
 });
+$('.main-menu__item:not(.sublist-toggle) > a').on('click', function () {
+    e.preventDefault();
+    scroll(this);
+});
 
 $(document).on('click', '.sublist a', function (e) {
     if ($(this).parent().attr('id') === 'service-menu-list') {

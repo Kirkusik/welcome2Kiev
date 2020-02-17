@@ -67,12 +67,12 @@
                 </p>
                 <div class="cta__wrap-form" data-aos="fade-left">
                     <form method="POST" class="emailForm">
-                        <span class="input-title hidden">E-mail</span>
-                        <input name="e-mail" value="" placeholder="E-mail" class="input-email">
+                        <input type="email" name="e-mail" value="" placeholder="E-mail" class="input-email">
+                        <label class="input-title">E-mail</label>
                         <input type="hidden" name="admin-email" value="no-reply@welcome2kyiv.com.ua">
                         <input type="submit" value="" class="cta__submit">
                     </form>
-                    <p>Нажимая на кнопку, вы даёте согласие на обработку своих персональных данных.</p>
+                    <p class="desc">Нажимая на кнопку, вы даёте согласие на обработку своих персональных данных.</p>
                 </div>
             </div>
         </article>
@@ -120,12 +120,12 @@
                 </p>
                 <div class="cta__wrap-form" data-aos="fade-left">
                     <form method="POST" class="emailForm">
-                        <span class="input-title hidden">E-mail</span>
-                        <input name="e-mail" value="" placeholder="E-mail" class="input-email">
+                        <input type="email" name="e-mail" value="" placeholder="E-mail" class="input-email">
+                        <label class="input-title">E-mail</label>
                         <input type="hidden" name="admin-email" value="no-reply@welcome2kyiv.com.ua">
                         <input type="submit" value="" class="cta__submit">
                     </form>
-                    <p>Нажимая на кнопку, вы даёте согласие на обработку своих персональных данных.</p>
+                    <p class="desc">Нажимая на кнопку, вы даёте согласие на обработку своих персональных данных.</p>
                 </div>
             </div>
         </article>
@@ -237,7 +237,7 @@
 
                 <div class="contacts__links">
                     <a href="tel:+380961209696" class="contacts__tel">+38 (096) 120 96 96</a>
-                    <a href="" class="contacts__mail">info@welcome2kyiv.com.ua</a>
+                    <a href="mailto:info@welcome2kyiv.com.ua" class="contacts__mail">info@welcome2kyiv.com.ua</a>
                     <ul class="contacts__socials">
                         <li class="contacts__socials-item">
                             <a href="" class="contacts__socials-link fb"></a>
@@ -269,7 +269,8 @@
 
                         <div class="services-checker-wrap">
                             <label class="contacts__form-label">Выберите услугу:</label>
-                            <input type="text" class="contacts__form-input checked" size="25" readonly value="Отели">
+                            <input type="text" class="contacts__form-input checked service-list-input" size="25"
+                                readonly value="Отели, Трансфер">
                             <button id="btn-list" class="services-checker__toggle"></button>
 
                             <div class="services__check-list hidden">
@@ -280,15 +281,17 @@
                                     </span>
                                     <span class="item">Отели</span>
                                 </label>
-                                <input type="checkbox" name="hotels" id="hotels" checked>
+                                <input type="checkbox" name="services[]" value="Отели" id="hotels" checked
+                                    class="service-check">
 
                                 <label for="transfer">
                                     <span class="label-box">
-                                        <span class=""></span>
+                                        <span class="check-box"></span>
                                     </span>
                                     <span class="item">Трансфер</span>
                                 </label>
-                                <input type="checkbox" name="transfer" id="transfer">
+                                <input type="checkbox" name="services[]" value="Трансфер" id="transfer" checked
+                                    class="service-check">
 
                                 <label for="restaurants">
                                     <span class="label-box">
@@ -296,7 +299,8 @@
                                     </span>
                                     <span class="item">Рестораны</span>
                                 </label>
-                                <input type="checkbox" name="restaurants" id="restaurants">
+                                <input type="checkbox" name="services[]" value="Рестораны" id="restaurants"
+                                    class="service-check">
 
                                 <label for="excursions">
                                     <span class="label-box">
@@ -304,7 +308,8 @@
                                     </span>
                                     <span class="item">Экскурсии</span>
                                 </label>
-                                <input type="checkbox" name="excursions" id="excursions">
+                                <input type="checkbox" name="services[]" value="Экскурсии" id="excursions"
+                                    class="service-check">
 
                                 <label for="entertainment">
                                     <span class="label-box">
@@ -312,7 +317,8 @@
                                     </span>
                                     <span class="item">Развлечения</span>
                                 </label>
-                                <input type="checkbox" name="entertainment" id="entertainment">
+                                <input type="checkbox" name="services[]" value="Развлечения" id="entertainment"
+                                    class="service-check">
 
                                 <label for="shopping">
                                     <span class="label-box">
@@ -320,16 +326,23 @@
                                     </span>
                                     <span class="item">Шопинг</span>
                                 </label>
-                                <input type="checkbox" name="shopping" id="shopping">
+                                <input type="checkbox" name="services[]" id="Шопинг" value="shopping"
+                                    class="service-check">
 
                             </div>
                         </div>
 
-                        <textarea name="message" placeholder="Сообщение" class="footer-massage"></textarea>
+                        <label class="contacts__form-label">
+                            <span class="input-title hidden">Сообщение</span>
+                            <textarea name="message" placeholder="Сообщение" class="footer-massage"></textarea>
+                        </label>
+
 
                         <label class="promotional-code contacts__form-label">
-                            Промокод<span class="plus">+</span>
-                            <input class="prom-code-input" id="check" type="text" value="" name="promotional-code">
+
+                            <input class="prom-code-input contacts__form-input" id="promo-check" type="text" value=""
+                                name="promotional-code">
+                            <label for="promo-check">Промокод<span class="plus">+</span></label>
                         </label>
 
                         <input type="hidden" name="admin-email" value="info@welcome2kyiv.com.ua">
@@ -407,14 +420,10 @@
     @@include("../blocks/modules/footer/footer.html")
 
     <div class="popup-promo hidden" data-fancybox>
-        <h2>
-            Текст для формы с промо-кодом
-        </h2>
+        Текст для формы с промо-кодом
     </div>
     <div class="popup-cform hidden" data-fancybox>
-        <h2>
-            Текст для формы с промо-кодом
-        </h2>
+        Текст для формы с промо-кодом
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"

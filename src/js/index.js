@@ -3,16 +3,6 @@ import AOS from 'aos';
 
 AOS.init();
 
-$(".input-email").on('focus', function () {
-    $(this).prev(".input-title").removeClass('hidden');
-});
-
-$(".input-email").on('blur', function () {
-    $(this).prev(".input-title").addClass('hidden');
-});
-
-
-
 // btn
 $(".order-btn__link").click(function (e) {
     e.preventDefault();
@@ -26,42 +16,37 @@ $(".order-btn__link").click(function (e) {
 });
 
 // focus/blur form
-$(".contacts__form-input").focus(function () {
+$(".contacts__form-input, .footer-massage").focus(function () {
     $(this).prev(".input-title").removeClass('hidden');
 });
 
-$(".contacts__form-input").blur(function () {
+$(".contacts__form-input, .footer-massage").blur(function () {
     $(this).prev(".input-title").addClass('hidden');
 });
 
-
-
-// list
-$(document).click(function (e) {
-    let container = $('#btn-list');
-    let container1 = $('.footer-form .checked');
-    if (!container.is(e.target) && !container1.is(e.target)) {
-        $('.services__check-list').addClass(`hidden`);
-    }
-});
-
+function inputEmailValid() {
+    let inputs = document.querySelectorAll(`.input-email, [type="email"]`);
+    inputs.forEach(element => {
+        element.addEventListener('blur', function () {
+            if (element.value && element.value !== "") {
+                element.classList.add('entered');
+            } else {
+                element.classList.remove('entered');
+            }
+        });
+    });
+}
+inputEmailValid();
 
 $('#btn-list').click(function (e) {
     e.preventDefault();
     ($('.services__check-list')).toggleClass(`hidden`);
 });
 
-$('.footer-form .checked').on('click', function () {
-    ($('.services__check-list')).toggleClass(`hidden`);
-});
-
-
-// checkbox
-let countChecked = function () {
+$('.service-check').on('click', function () {
     let id = $(this).attr('id');
-    let n = $(this).prop("checked");
 
-    if (n === true) {
+    if ($(this).is(':checked')) {
         $("label[for='" + id + "'] .label-box span").addClass(`check-box`);
     } else {
         $("label[for='" + id + "'] .label-box span").removeClass(`check-box`);
@@ -74,84 +59,105 @@ let countChecked = function () {
 
     $('.contacts__form .checked').css('padding-left', '14px');
 
-    return $('.contacts__form .checked').val(val).text();
-};
+    $('.contacts__form .checked').val(val).text();
+});
 
-
-$('input[type=checkbox]').on('click', countChecked);
+$('.footer-form .checked').on('click', function () {
+    ($('.services__check-list')).toggleClass(`hidden`);
+});
 
 // Промокод
 $('.plus').on('click', function () {
     $('.prom-code-input').addClass("active");
     $('.plus').css("display", 'none');
     $('.promotional-code').addClass("active");
+    $('label[for="promo-check"]').addClass('input-title');
 })
 
+$('.emailForm').on('submit', function (event) {
+    event.preventDefault();
 
+    let emailEl = $(this).find('.input-email');
 
-// Валидация форми footer
-function formValidation(form) {
+    if (validateEmail($(emailEl).val()) === false) {
+        addErrorClass($(emailEl))
+    } else {
+        formSend($(this), '.popup-promo');
+    }
 
-    let inputs = $(form).find('input:not([type="submit"])');
+});
 
-    inputs.each((index, element) => {
+$('#orderForm').on('submit', function (event) {
+    event.preventDefault();
 
-        let value = $(element).val();
+    console.log($(this).serialize());
 
-        if ($(element).attr('name') === 'user_name') {
-            if (value === '') {
-                $(element).addClass('input-error');
+    let valid = true;
 
-                setTimeout(function () {
-                    $(element).removeClass('input-error');
-                    return false;
-                }, 2500);
-            }
+    let user_name = $(this).find('[name="user_name"]');
+
+    if (validateText($(user_name).val()) === false) {
+        valid = valid && false;
+        addErrorClass($(user_name));
+    }
+
+    let checkboxes = $(this).find('[name="services"]:checked');
+
+    if (checkboxes.length < 0) {
+        valid = valid && false;
+        addErrorClass('.service-list-input');
+    }
+
+    let email = $(this).find('[name="e-mail"]');
+
+    if (validateEmail($(email).val()) === false) {
+        addErrorClass($(email));
+        valid = valid && false;
+    }
+
+    if (valid) {
+        formSend($(this), '.popup-cform');
+    }
+});
+
+function addErrorClass(elem) {
+    $(elem).addClass('input-error');
+
+    setTimeout(function () {
+        $(elem).removeClass('input-error');
+    }, 2500);
+}
+
+function validateEmail(email) {
+    var re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+    return re.test(String(email).toLowerCase());
+}
+
+function validateText(text) {
+    let letters = /^[а-яА-ЯёЁa-zA-Z0-9]+$/;
+    if (text !== '') {
+        if (!text.match(letters)) {
+            return false;
         }
-        if ($(element).attr('name') === 'e-mail') {
-
-            if (value.length > 0 && (value.match(/.+?\@.+/g) || []).length !== 1 || value === '') {
-
-                $(element).addClass('input-error');
-
-                setTimeout(function () {
-                    $(element).removeClass('input-error');
-                    return false;
-                }, 2500);
-
-            }
-
-        }
-
-    });
+    } else {
+        return false;
+    }
 
     return true;
+}
 
-};
-formSend('#orderForm');
-formSend('.emailForm');
-
-function formSend(selector) {
-
-    $(selector).on('submit', function (event) {
-        event.preventDefault();
-
-
-        if (formValidation($(selector))) {
-            $.ajax({
-                url: "/mail.php", //url страницы (action_ajax_form.php)
-                type: "POST", //метод отправки
-                data: $(this).serialize(), // Сеарилизуем объект
-                success: function (response) { //Данные отправлены успешно
-                    $(this).trigger('reset');
-                    $.fancybox.open($('.popup-cform'));
-                },
-                error: function (response) { // Данные не отправлены              
-                    throw new Error(response)
-                }
-            });
+function formSend(form, popUP) {
+    $.ajax({
+        url: "/mail.php", //url страницы (action_ajax_form.php)
+        type: "POST", //метод отправки
+        data: $(form).serialize(), // Сеарилизуем объект
+        success: function (response) { //Данные отправлены успешно
+            $(form).trigger('reset');
+            $.fancybox.open($(popUP));
+        },
+        error: function (response) { // Данные не отправлены              
+            throw new Error(response)
         }
-
     });
 }
 
